@@ -15,7 +15,7 @@ Then rename .env.example as .env and provide correct database details.
 Now you need to generate the application key using the following command:
 
 ~~~
-php artisan key:generate
+php artisan jwt:secret
 ~~~
 
 Then you must migrate the application to db using the following command:
