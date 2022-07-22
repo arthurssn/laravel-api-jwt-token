@@ -10,8 +10,20 @@ class UserController extends Controller
 {
     public function index()
     {
-        return User::select('id', 'name', 'email')
-            ->with('posts:user_id,id,title')
+        $users = User::select('id', 'name', 'email')
+            ->withCount('posts')
             ->get();
+
+        return $users;
+    }
+
+    public function show(int $id)
+    {
+        $user = User::select('id', 'name', 'email')
+            ->with('posts:id,title,category_id,user_id')
+            ->where('id', $id)
+            ->get();
+
+        return $user;
     }
 }

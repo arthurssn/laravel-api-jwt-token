@@ -4,21 +4,26 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Models\Post;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class PostController extends Controller
 {
     public function index()
     {
-        $posts = Post::all();
+
+        $posts = Post::select('id', 'title', 'category_id', 'user_id')
+            ->get();
 
         return $posts;
     }
 
     public function show(int $id)
     {
-        $post = Post::findOrFail($id)
+
+        $post = Post::select('title', 'description', 'category_id', 'user_id')
             ->with('user:id,name')
+            ->where('id', $id)
             ->get();
         return $post;
     }

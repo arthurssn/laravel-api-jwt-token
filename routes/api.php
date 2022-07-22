@@ -29,5 +29,5 @@ Route::controller(AuthController::class)->group(function () {
 Route::group(['middleware' => ['apiJWT']], function () {
     Route::resource('categories', CategoryController::class);
     Route::resource('posts', PostController::class);
-    Route::get('/users', [UserController::class, 'index']);
+    Route::resource('/users', UserController::class);
 });
