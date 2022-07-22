@@ -11,7 +11,7 @@ class UserController extends Controller
     public function index()
     {
         return User::select('id', 'name', 'email')
-            ->with('posts:user_id,id,title')
+            ->withCount('posts')
             ->get();
     }
 }
